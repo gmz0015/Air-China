@@ -19,7 +19,7 @@ Roy Evans, Junhui Quan, Wenbo Yin, Yiwei Xu, Zheng li, Mingze Gao
   - Build for production with minification
     `npm run build`
 ## How to push
--
+- `git push origin master:dev_ui`
 ## Backup
 - icon color: `# dbdbdb`
 - Use 'sass' within `<style>`
