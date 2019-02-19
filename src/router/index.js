@@ -29,13 +29,42 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
-    hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
+    redirect: 'dashboard',
+    meta:{ title: 'Dashboard' },
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta:{ title: 'Home' },
+      }
+    ]
+  },
+
+  {
+    path: '/programme',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Programme',
+        component: () => import('@/views/form/index'),
+        meta: { title: 'Programme', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/module',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Module',
+        component: () => import('@/views/form/index'),
+        meta: { title: 'Module', icon: 'form' }
+      }
+    ]
   },
 
   {

@@ -9,7 +9,7 @@ Roy Evans, Junhui Quan, Wenbo Yin, Yiwei Xu, Zheng li, Mingze Gao
 - [Node.js](https://nodejs.org/)
 ## How to use
 - using command line to clone:
-  `git clone -b dev_ui_vue git@git.shefcompsci.org.uk:com6103-2018-19/team01/project.git`
+  `git clone -b dev_ui git@git.shefcompsci.org.uk:com6103-2018-19/team01/project.git`
 - using node.js as environment
   - Initial
     - Install dependencies:
