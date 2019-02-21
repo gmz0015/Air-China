@@ -1,17 +1,6 @@
 <template>
   <div class="app-container">
 
-    <!-- Step -->
-    <el-steps :active="0" align-center>
-      <el-step title="Introduction"></el-step>
-      <el-step title="B1" description="Programme Content"></el-step>
-      <el-step title="B2" description="Reference Points and Consultation"></el-step>
-      <el-step title="B3" description="Prospectus Information"></el-step>
-      <el-step title="B4" description="HEAR Programme Description"></el-step>
-      <el-step title="B5" description="Additional Information for Dual or Interdisciplinary Programmes"></el-step>
-      <el-step title="Review"></el-step>
-    </el-steps>
-
     <!-- Form -->
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Activity name">
@@ -52,12 +41,6 @@
       <el-form-item label="Activity form">
         <el-input v-model="form.desc" type="textarea"/>
       </el-form-item>
-      <el-form-item>
-        <el-button @click="onCancel">Cancel</el-button>
-        <el-button type="success">Save</el-button>
-        <el-button type="primary" round>Back</el-button>
-        <el-button type="primary" @click="onSubmit" round>Next Step</el-button>
-      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -75,18 +58,8 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      }
-    }
-  },
-  methods: {
-    onSubmit() {
-      this.$message('submit!')
-    },
-    onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
+      },
+      active: 0
     }
   }
 }

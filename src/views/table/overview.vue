@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+
     <el-table :data="list">
 
       <!-- ID -->

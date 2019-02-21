@@ -79,7 +79,7 @@ export const constantRouterMap = [
       {
         path: 'create',
         name: 'Create Module',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/form/module/index'),
         meta: { title: 'Create', icon: 'form' }
       }
     ]
