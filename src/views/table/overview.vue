@@ -42,9 +42,31 @@
         <template slot-scope="scope">
           <i class="el-icon-time"/>
           <span>{{ scope.row.display_time }}</span>
+          <!-- <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ $t('table.draft') }}
+          </el-button> -->
         </template>
       </el-table-column>
 
+      <!-- Botton -->
+      <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+        <template slot-scope="scope">
+
+          <!-- Edit -->
+          <!-- <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('table.edit') }}</el-button> -->
+
+          <!-- Publish -->
+          <el-button v-if="scope.row.status!='published'" size="mini" type="success" @click="handleModifyStatus(scope.row,'published')">{{ 'Publish' }}
+          </el-button>
+
+          <!-- Draft -->
+          <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ 'Draft' }}
+          </el-button>
+
+          <!-- Delete -->
+          <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{ 'Delete' }}
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -80,6 +102,13 @@ export default {
       getList(this.listQuery).then(response => {
         this.list = response.data.items
       })
+    },
+    handleModifyStatus(row, status) {
+      this.$message({
+        message: 'Modify Succeddful',
+        type: 'success'
+      })
+      row.status = status
     }
   }
 }
