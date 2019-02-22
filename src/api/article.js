@@ -8,7 +8,7 @@ export function fetchList(query) {
   })
 }
 
-export function fetchArticle(id) {
+export function fetchProgramme(id) {
   return request({
     url: '/article/detail',
     method: 'get',

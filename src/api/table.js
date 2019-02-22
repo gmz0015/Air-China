@@ -8,3 +8,11 @@ export function getList(params) {
     params
   })
 }
+
+export function fetchProgramme(id) {
+  return request({
+    url: '/article/detail',
+    method: 'get',
+    params: { id }
+  })
+}

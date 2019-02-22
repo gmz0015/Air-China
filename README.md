@@ -27,8 +27,9 @@ Roy Evans, Junhui Quan, Wenbo Yin, Yiwei Xu, Zheng li, Mingze Gao
   `npm install node-sass --save-dev`
   `npm install sass-loader --save-dev`
 ## TODO list
-- Modify the form of creating module and programmes
- - Problems: cannot add item within B1 form
+- Modify the form of creating module and programmes<font color=green>[half]</font>
+  - Problems: cannot add item within B1 form
 - Modify the overview pages
- - Decide the display mode [Tab? TreeTable?]
+  - Programme <font color=green>[half]</font>
+  - Decide the display mode [Tab? TreeTable?]
 - <font color=red>Discussion</font> If use pagination, decide whether front end or back end to paginate. [refer to this](https://www.jianshu.com/p/70facd19ec55)

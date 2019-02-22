@@ -51,13 +51,20 @@ export const constantRouterMap = [
       {
         path: 'overview',
         name: 'Overview Programme',
-        component: () => import('@/views/table/overview'),
+        component: () => import('@/views/programme/overview/index'),
         meta: { title: 'Overview', icon: 'form' }
+      },
+      {
+        path: 'detail/:id(\\d+)',
+        component: () => import('@/views/programme/overview/detail'),
+        name: 'ProgrammeDetail',
+        meta: { title: 'Detail', noCache: true },
+        hidden: true
       },
       {
         path: 'create',
         name: 'Create Programme',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/programme/create/index'),
         meta: { title: 'Create', icon: 'form' }
       }
     ]
@@ -73,13 +80,13 @@ export const constantRouterMap = [
       {
         path: 'overview',
         name: 'Overview Module',
-        component: () => import('@/views/table/overview'),
+        component: () => import('@/views/module/overview/index'),
         meta: { title: 'Overview', icon: 'form' }
       },
       {
         path: 'create',
         name: 'Create Module',
-        component: () => import('@/views/form/module/index'),
+        component: () => import('@/views/module/create/index'),
         meta: { title: 'Create', icon: 'form' }
       }
     ]
