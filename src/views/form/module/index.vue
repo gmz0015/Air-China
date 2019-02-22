@@ -20,14 +20,15 @@
       <B3 v-if="active==3"/>
       <B4 v-if="active==4"/>
       <B5 v-if="active==5"/>
+      <review v-if="active==6"/>
     </keep-alive>
 
 
     <!-- Bottom of Form -->
     <el-button @click="onCancel">Cancel</el-button>
-    <el-button type="success" @click="onSave">Save</el-button>
-    <el-button type="primary" @click="onPrev" round>Back</el-button>
-    <el-button type="primary" @click="onNext" round>Next Step</el-button>
+    <el-button type="success" @click="submitForm(active)">Save</el-button>
+    <el-button type="primary" @click="onPrev()" round>Back</el-button>
+    <el-button type="primary" @click="onNext()" round>Next Step</el-button>
   </div>
 </template>
 
@@ -38,10 +39,11 @@ import B2 from './B2'
 import B3 from './B3'
 import B4 from './B4'
 import B5 from './B5'
+import review from './review'
 
 export default {
   name: 'index',
-  components: { introduction, B1, B2, B3, B4, B5 },
+  components: { introduction, B1, B2, B3, B4, B5, review },
   data() {
     return {
       form: {
@@ -54,7 +56,8 @@ export default {
         resource: '',
         desc: ''
       },
-      active: 0
+      active: 0,
+      formName: ''
     }
   },
   methods: {
@@ -75,7 +78,29 @@ export default {
     onNext() {
       this.$message('Next!')
       // ++this.active;
-      if (this.active++ > 5) this.active=0
+      if (this.active++ > 6) this.active=0
+    },
+    submitForm(step) {
+      getFormName(step);
+
+      this.$refs[this.formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    getFormName(step) {
+      if (step==1) this.formName='form_B1'
+      if (step==2) this.formName='form_B2'
+      if (step==3) this.formName='form_B3'
+      if (step==4) this.formName='form_B4'
+      if (step==5) this.formName='form_B5'
     }
   }
 }

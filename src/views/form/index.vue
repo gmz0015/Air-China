@@ -54,7 +54,7 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="onCancel">Cancel</el-button>
-        <el-button type="success">Save</el-button>
+        <el-button type="success" @click="submitForm('form')">Save</el-button>
         <el-button type="primary" round>Back</el-button>
         <el-button type="primary" @click="onSubmit" round>Next Step</el-button>
       </el-form-item>
@@ -87,7 +87,20 @@ export default {
         message: 'cancel!',
         type: 'warning'
       })
-    }
+    },
+    submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
   }
 }
 </script>
