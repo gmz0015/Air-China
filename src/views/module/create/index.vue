@@ -3,13 +3,13 @@
 
     <!-- Step -->
     <el-steps :active="0" align-center>
-      <el-step title="Introduction"></el-step>
-      <el-step title="B1" description="Programme Content"></el-step>
-      <el-step title="B2" description="Reference Points and Consultation"></el-step>
-      <el-step title="B3" description="Prospectus Information"></el-step>
-      <el-step title="B4" description="HEAR Programme Description"></el-step>
-      <el-step title="B5" description="Additional Information for Dual or Interdisciplinary Programmes"></el-step>
-      <el-step title="Review"></el-step>
+      <el-step title="Introduction"/>
+      <el-step title="B1" description="Programme Content"/>
+      <el-step title="B2" description="Reference Points and Consultation"/>
+      <el-step title="B3" description="Prospectus Information"/>
+      <el-step title="B4" description="HEAR Programme Description"/>
+      <el-step title="B5" description="Additional Information for Dual or Interdisciplinary Programmes"/>
+      <el-step title="Review"/>
     </el-steps>
 
     <!-- Form -->
@@ -56,7 +56,7 @@
         <el-button @click="onCancel">Cancel</el-button>
         <el-button type="success" @click="submitForm('form')">Save</el-button>
         <el-button type="primary" round>Back</el-button>
-        <el-button type="primary" @click="onSubmit" round>Next Step</el-button>
+        <el-button type="primary" round @click="onSubmit">Next Step</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -89,18 +89,18 @@ export default {
       })
     },
     submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    }
   }
 }
 </script>

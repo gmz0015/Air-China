@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <el-table :data="list">
+    <el-table :data="list" v-loading="listLoading">
 
       <!-- ID -->
       <el-table-column align="center" label="ID" width="95">
@@ -88,7 +88,8 @@ export default {
   },
   data() {
     return {
-      list: null
+      list: null,
+      listLoading: false
       // listQuery: {
       //   page: 1,
       //   limit: 10
@@ -100,9 +101,14 @@ export default {
   },
   methods: {
     fetchData() {
+      this.listLoading = true
       getList(this.listQuery).then(response => {
         this.list = response.data.items
       })
+      // Just to simulate the time of the request
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1.5 * 1000)
     },
     handleModifyStatus(row, status) {
       this.$message({

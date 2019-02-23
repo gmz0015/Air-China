@@ -1,12 +1,12 @@
 <template>
   <div class="app-container">
 
-    <el-table :data="list">
+    <el-table :data="list" v-loading="listLoading">
 
       <!-- ID -->
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          <span> {{ scope.row.id }} </span>
         </template>
       </el-table-column>
 
@@ -20,14 +20,7 @@
       <!-- Author -->
       <el-table-column label="Author" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-
-      <!-- Previews -->
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          <span>{{ scope.row.author_name }}</span>
         </template>
       </el-table-column>
 
@@ -35,14 +28,6 @@
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-
-      <!-- Time -->
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span>{{ scope.row.display_time }}</span>
         </template>
       </el-table-column>
 
@@ -68,7 +53,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import api from '@/api/api.js'
 
 export default {
   filters: {
@@ -84,10 +69,7 @@ export default {
   data() {
     return {
       list: null,
-      listQuery: {
-        page: 1,
-        limit: 10
-      }
+      listLoading: true
     }
   },
   created() {
@@ -95,9 +77,16 @@ export default {
   },
   methods: {
     fetchData() {
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
+      this.listLoading = true
+      api.programme_api('/programme/list', 'type=top&key=123456')
+      .then(response => {
+        console.log(response);
+        this.list = response.programmes
       })
+      // Just to simulate the time of the request
+      setTimeout(() => {
+        this.listLoading = false
+      }, 1.5 * 1000)
     }
   }
 }

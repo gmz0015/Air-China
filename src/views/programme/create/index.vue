@@ -3,13 +3,13 @@
 
     <!-- Step -->
     <el-steps :active="active" align-center>
-      <el-step title="Introduction"></el-step>
-      <el-step title="B1" description="Programme Content"></el-step>
-      <el-step title="B2" description="Reference Points and Consultation"></el-step>
-      <el-step title="B3" description="Prospectus Information"></el-step>
-      <el-step title="B4" description="HEAR Programme Description"></el-step>
-      <el-step title="B5" description="Additional Information for Dual or Interdisciplinary Programmes"></el-step>
-      <el-step title="Review"></el-step>
+      <el-step title="Introduction"/>
+      <el-step title="B1" description="Programme Content"/>
+      <el-step title="B2" description="Reference Points and Consultation"/>
+      <el-step title="B3" description="Prospectus Information"/>
+      <el-step title="B4" description="HEAR Programme Description"/>
+      <el-step title="B5" description="Additional Information for Dual or Interdisciplinary Programmes"/>
+      <el-step title="Review"/>
     </el-steps>
 
     <!-- Form -->
@@ -23,12 +23,11 @@
       <review v-if="active==6"/>
     </keep-alive>
 
-
     <!-- Bottom of Form -->
     <el-button @click="onCancel">Cancel</el-button>
     <el-button type="success" @click="submitForm(active)">Save</el-button>
-    <el-button type="primary" @click="onPrev()" round>Back</el-button>
-    <el-button type="primary" @click="onNext()" round>Next Step</el-button>
+    <el-button type="primary" round @click="onPrev()">Back</el-button>
+    <el-button type="primary" round @click="onNext()">Next Step</el-button>
   </div>
 </template>
 
@@ -42,7 +41,7 @@ import B5 from './B5'
 import review from './review'
 
 export default {
-  name: 'index',
+  name: 'Index',
   components: { introduction, B1, B2, B3, B4, B5, review },
   data() {
     return {
@@ -72,35 +71,35 @@ export default {
     },
     onPrev() {
       this.$message('Prev!')
-      --this.active;
-      if (this.active < 0) this.active=0
+      --this.active
+      if (this.active < 0) this.active = 0
     },
     onNext() {
       this.$message('Next!')
-      // ++this.active;
-      if (this.active++ > 6) this.active=0
+      // ++this.active
+      if (this.active++ > 6) this.active = 0
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    },
+    getFormName(step) {
+      if (step === 1) this.formName = 'form_B1'
+      if (step === 2) this.formName = 'form_B2'
+      if (step === 3) this.formName = 'form_B3'
+      if (step === 4) this.formName = 'form_B4'
+      if (step === 5) this.formName = 'form_B5'
     },
     submitForm(step) {
-      getFormName(step);
+      this.getFormName(step)
 
       this.$refs[this.formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          alert('submit!')
         } else {
-          console.log('error submit!!');
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    },
-    getFormName(step) {
-      if (step==1) this.formName='form_B1'
-      if (step==2) this.formName='form_B2'
-      if (step==3) this.formName='form_B3'
-      if (step==4) this.formName='form_B4'
-      if (step==5) this.formName='form_B5'
+      })
     }
   }
 }

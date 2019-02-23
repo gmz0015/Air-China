@@ -19,6 +19,8 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+require('./mock/programme_mock.js')
+
 new Vue({
   el: '#app',
   router,

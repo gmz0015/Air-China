@@ -72,11 +72,23 @@
         </div>
       </el-card>
     </el-row>
+
+    <!-- Edit History -->
+    <el-row :gutter="20" style="margin-top:25px;">
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">Edit History</div>
+        <div >
+          <template slot-scope="scope">
+            {{ scope.row.history }}
+          </template>
+        </div>
+      </el-card>
+    </el-row>
   </div>
 </template>
 
 <script>
-import { fetchProgramme } from '@/api/table'
+import { getList } from '@/api/table'
 
 export default {
   name: 'Detail',
@@ -92,7 +104,7 @@ export default {
   },
   methods: {
     fetchData(id) {
-      fetchProgramme(id).then(response => {
+      getList(id).then(response => {
         this.list = response.data.items
       }).catch(err => {
         console.log(err)
