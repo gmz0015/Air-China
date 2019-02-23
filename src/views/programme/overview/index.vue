@@ -53,15 +53,15 @@
 </template>
 
 <script>
-import api from '@/api/api.js'
+import { fetchList, fetchProgramme } from '@/api/programme'
 
 export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
+        Published: 'success',
+        Draft: 'gray',
+        Deleted: 'danger'
       }
       return statusMap[status]
     }
@@ -69,24 +69,24 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: false
     }
   },
   created() {
-    this.fetchData()
+    this.getList()
   },
   methods: {
-    fetchData() {
+    getList() {
       this.listLoading = true
-      api.programme_api('/programme/list', 'type=top&key=123456')
-      .then(response => {
-        console.log(response);
-        this.list = response.programmes
+      fetchList(this.listQuery).then(response => {
+        this.list = response.items
+        this.total = response.total
+
+        // Just to simulate the time of the request
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1.5 * 1000)
       })
-      // Just to simulate the time of the request
-      setTimeout(() => {
-        this.listLoading = false
-      }, 1.5 * 1000)
     }
   }
 }
