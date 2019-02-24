@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import userAPI from './user'
 import articleAPI from './article'
 import programmeAPI from './programme'
+import moduleAPI from './module'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -29,8 +30,12 @@ Mock.mock(/\/article\/pv/, 'get', articleAPI.getPv)
 Mock.mock(/\/article\/create/, 'post', articleAPI.createArticle)
 Mock.mock(/\/article\/update/, 'post', articleAPI.updateArticle)
 
-
+// programme
 Mock.mock(/\/programme\/list/, 'get', programmeAPI.getList)
 Mock.mock(/\/programme\/detail/, 'get', programmeAPI.getProgramme)
+
+// Module
+Mock.mock(/\/module\/list/, 'get', moduleAPI.getList)
+Mock.mock(/\/module\/detail/, 'get', moduleAPI.getModule)
 
 export default Mock

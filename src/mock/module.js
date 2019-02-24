@@ -21,12 +21,12 @@ export default {
       items: List
     }
   },
-  getProgramme: (config) => {
+  getModule: (config) => {
     const { id } = param2Obj(config.url)
-    for (const programme of List) {
-      if (programme.id === +id) {
+    for (const module of List) {
+      if (module.id === +id) {
         return {
-          items: programme
+          items: module
         }
       }
     }

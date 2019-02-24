@@ -20,7 +20,7 @@
       <!-- Author -->
       <el-table-column label="Author" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author_name }}</span>
+          <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
 
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { fetchList, fetchProgramme } from '@/api/programme'
+import { fetchList } from '@/api/programme'
 
 export default {
   filters: {

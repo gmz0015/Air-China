@@ -84,6 +84,13 @@ export const constantRouterMap = [
         meta: { title: 'Overview', icon: 'form' }
       },
       {
+        path: 'detail/:id(\\d+)',
+        component: () => import('@/views/module/overview/detail'),
+        name: 'ModuleDetail',
+        meta: { title: 'Detail', noCache: true },
+        hidden: true
+      },
+      {
         path: 'create',
         name: 'Create Module',
         component: () => import('@/views/module/create/index'),

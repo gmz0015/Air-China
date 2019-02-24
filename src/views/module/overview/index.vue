@@ -6,7 +6,7 @@
       <!-- ID -->
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          <span> {{ scope.row.id }} </span>
         </template>
       </el-table-column>
 
@@ -24,13 +24,6 @@
         </template>
       </el-table-column>
 
-      <!-- Previews -->
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-
       <!-- Status -->
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
@@ -38,34 +31,21 @@
         </template>
       </el-table-column>
 
-      <!-- Time -->
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span>{{ scope.row.display_time }}</span>
-          <!-- <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ $t('table.draft') }}
-          </el-button> -->
-        </template>
-      </el-table-column>
-
       <!-- Botton -->
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
 
-          <!-- Edit -->
-          <!-- <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('table.edit') }}</el-button> -->
-
-          <!-- Publish -->
-          <el-button v-if="scope.row.status!='published'" size="mini" type="success" @click="handleModifyStatus(scope.row,'published')">{{ 'Publish' }}
-          </el-button>
-
-          <!-- Draft -->
-          <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{ 'Draft' }}
-          </el-button>
+          <!-- Details -->
+          <!-- <el-button size="mini" type="success" @click="onDetail(scope.row)">Details</el-button> -->
 
           <!-- Delete -->
-          <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{ 'Delete' }}
-          </el-button>
+          <!-- <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{ 'Delete' }}
+          </el-button> -->
+
+          <!-- Edit -->
+          <router-link :to="'/module/detail/'+scope.row.id">
+            <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -73,15 +53,15 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { fetchList } from '@/api/module'
 
 export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
+        Published: 'success',
+        Draft: 'gray',
+        Deleted: 'danger'
       }
       return statusMap[status]
     }
@@ -90,32 +70,23 @@ export default {
     return {
       list: null,
       listLoading: false
-      // listQuery: {
-      //   page: 1,
-      //   limit: 10
-      // }
     }
   },
   created() {
-    this.fetchData()
+    this.getList()
   },
   methods: {
-    fetchData() {
+    getList() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-      })
-      // Just to simulate the time of the request
+      fetchList(this.listQuery).then(response => {
+        this.list = response.items
+        this.total = response.total
+
+        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
-    },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: 'Modify Succeddful',
-        type: 'success'
       })
-      row.status = status
     }
   }
 }

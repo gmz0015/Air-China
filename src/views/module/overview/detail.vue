@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { fetchProgramme } from '@/api/programme'
+import { fetchModule } from '@/api/module'
 
 // TODO: check the definition of data, need to definete the id, author, ...
 export default {
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     fetchData(id) {
-      fetchProgramme(id).then(response => {
+      fetchModule(id).then(response => {
         this.list = response.items
       }).catch(err => {
         console.log(err)
