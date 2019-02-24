@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 import { param2Obj } from './utils'
 
 const List = []
-const count = 20
+const count = 10
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
@@ -10,6 +10,9 @@ for (let i = 0; i < count; i++) {
     title: '@title(5, 10)',
     author: '@name',
     content: '@paragraph',
+    code: '@character(upper)@character(number)@character(number)',
+    name: '@title',
+    tutor: '@first @last',
     'status|1': ['Published', 'Draft', 'Deleted']
   }))
 }

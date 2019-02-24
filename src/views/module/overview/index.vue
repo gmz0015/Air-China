@@ -81,6 +81,7 @@ export default {
       fetchList(this.listQuery).then(response => {
         this.list = response.items
         this.total = response.total
+        console.log(this.list)
 
         // Just to simulate the time of the request
         setTimeout(() => {

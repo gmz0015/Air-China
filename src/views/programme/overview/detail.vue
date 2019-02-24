@@ -21,24 +21,96 @@
       </el-card>
     </el-row>
 
-    <!-- Author -->
+    <!-- programme level learning outcomes -->
     <el-row :gutter="20" style="margin-top:25px;">
       <el-card class="box-card">
-        <div slot="header" class="clearfix">Author</div>
+        <div slot="header" class="clearfix">Programme Level Learning Outcomes</div>
         <div >
-          {{ list.author }}
+          {{ list.content }}
         </div>
       </el-card>
     </el-row>
 
-    <!-- Status -->
     <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">Status</div>
-        <div >
-          <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
-        </div>
-      </el-card>
+      <!-- Author -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Author</div>
+          <div >
+            {{ list.author }}
+          </div>
+        </el-card>
+      </el-col>
+
+      <!-- Status -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Status</div>
+          <div >
+            <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="20" style="margin-top:25px;">
+      <!-- Core Modules -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Core Modules</div>
+          <div >
+            <el-table :data="module" v-loading="listLoading">
+
+              <el-table-column label="Code">
+                <template slot-scope="scope">
+                  {{ scope.row.code }}
+                </template>
+              </el-table-column>
+
+              <el-table-column label="Name">
+                <template slot-scope="scope">
+                  {{ scope.row.name }}
+                </template>
+              </el-table-column>
+
+              <el-table-column label="Tutor">
+                <template slot-scope="scope">
+                  {{ scope.row.tutor }}
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </el-col>
+
+      <!-- Optional Modules -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Core Modules</div>
+          <div >
+            <el-table :data="module" v-loading="listLoading">
+
+              <el-table-column label="Code">
+                <template slot-scope="scope">
+                  {{ scope.row.code }}
+                </template>
+              </el-table-column>
+
+              <el-table-column label="Name">
+                <template slot-scope="scope">
+                  {{ scope.row.name }}
+                </template>
+              </el-table-column>
+
+              <el-table-column label="Tutor">
+                <template slot-scope="scope">
+                  {{ scope.row.tutor }}
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </el-col>
     </el-row>
 
     <!-- Edit History -->
@@ -56,6 +128,7 @@
 
 <script>
 import { fetchProgramme } from '@/api/programme'
+import { fetchList } from '@/api/module'
 
 // TODO: check the definition of data, need to definete the id, author, ...
 export default {
@@ -72,22 +145,34 @@ export default {
   },
   data() {
     return {
-      list: null
+      list: null,
+      module: null,
+      listLoading: false
     }
   },
   created() {
     const id = this.$route.params && this.$route.params.id
     this.$message(id)
-    this.fetchData(id)
+    this.getData(id)
+    this.getModule()
   },
   methods: {
-    fetchData(id) {
+    getData(id) {
+      this.listLoading = true;
       fetchProgramme(id).then(response => {
         this.list = response.items
       }).catch(err => {
         console.log(err)
       })
     },
+    getModule() {
+      fetchList(this.listQuery).then(response => {
+        this.module = response.items
+        this.listLoading = false;
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>
