@@ -1,20 +1,16 @@
 <template>
   <div class="app-container">
 
-    <el-table :data="list" v-loading="listLoading">
+    <el-button @click="clearFilter">Clear All Filters</el-button>
+
+    <el-table ref="programmeOverviewTable" :data="list" v-loading="listLoading" :default-sort = "{prop: 'id', order: 'ascending'}">
 
       <!-- ID -->
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          <span> {{ scope.row.id }} </span>
-        </template>
+      <el-table-column align="center" label="ID" width="95" prop="id" sortable>
       </el-table-column>
 
       <!-- Title -->
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
+      <el-table-column label="Title" prop="title">
       </el-table-column>
 
       <!-- Author -->
@@ -25,9 +21,12 @@
       </el-table-column>
 
       <!-- Status -->
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column class-name="status-col" prop="status" label="Status" width="110" align="center" sortable
+        :filters="[{ text: 'Published', value: 'Published' }, { text: 'Draft', value: 'Draft' }, { text: 'Deleted', value: 'Deleted' }]"
+        :filter-method="filterStatus"
+        filter-placement="bottom-end">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+          <el-tag :type="scope.row.status | statusFilter" >{{ scope.row.status }}</el-tag>
         </template>
       </el-table-column>
 
@@ -83,11 +82,15 @@ export default {
         this.total = response.total
 
         // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
+        this.listLoading = false
       })
-    }
+    },
+    clearFilter() {
+      this.$refs.programmeOverviewTable.clearFilter();
+    },
+    filterStatus(value, row) {
+      return row.status === value;
+    },
   }
 }
 </script>

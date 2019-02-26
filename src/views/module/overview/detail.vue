@@ -21,24 +21,26 @@
       </el-card>
     </el-row>
 
-    <!-- Author -->
     <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">Author</div>
-        <div >
-          {{ list.author }}
-        </div>
-      </el-card>
-    </el-row>
+      <!-- Author -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Author</div>
+          <div >
+            {{ list.author }}
+          </div>
+        </el-card>
+      </el-col>
 
-    <!-- Status -->
-    <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">Status</div>
-        <div >
-          <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
-        </div>
-      </el-card>
+      <!-- Status -->
+      <el-col :span="12" class="text-center">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Status</div>
+          <div >
+            <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
+          </div>
+        </el-card>
+      </el-col>
     </el-row>
 
     <!-- Edit History -->

@@ -59,23 +59,23 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">Core Modules</div>
           <div >
-            <el-table :data="module" v-loading="listLoading">
+            <el-table :data="list.core_module" v-loading="listLoading">
 
               <el-table-column label="Code">
                 <template slot-scope="scope">
-                  {{ scope.row.code }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
 
               <el-table-column label="Name">
                 <template slot-scope="scope">
-                  {{ scope.row.name }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
 
               <el-table-column label="Tutor">
                 <template slot-scope="scope">
-                  {{ scope.row.tutor }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
             </el-table>
@@ -86,25 +86,25 @@
       <!-- Optional Modules -->
       <el-col :span="12" class="text-center">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">Core Modules</div>
+          <div slot="header" class="clearfix">Optional Modules</div>
           <div >
-            <el-table :data="module" v-loading="listLoading">
+            <el-table :data="list.optional_module" v-loading="listLoading">
 
               <el-table-column label="Code">
                 <template slot-scope="scope">
-                  {{ scope.row.code }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
 
               <el-table-column label="Name">
                 <template slot-scope="scope">
-                  {{ scope.row.name }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
 
               <el-table-column label="Tutor">
                 <template slot-scope="scope">
-                  {{ scope.row.tutor }}
+                  {{ scope.row }}
                 </template>
               </el-table-column>
             </el-table>
@@ -128,7 +128,6 @@
 
 <script>
 import { fetchProgramme } from '@/api/programme'
-import { fetchList } from '@/api/module'
 
 // TODO: check the definition of data, need to definete the id, author, ...
 export default {
@@ -146,28 +145,18 @@ export default {
   data() {
     return {
       list: null,
-      module: null,
       listLoading: false
     }
   },
   created() {
     const id = this.$route.params && this.$route.params.id
-    this.$message(id)
     this.getData(id)
-    this.getModule()
   },
   methods: {
     getData(id) {
       this.listLoading = true;
       fetchProgramme(id).then(response => {
         this.list = response.items
-      }).catch(err => {
-        console.log(err)
-      })
-    },
-    getModule() {
-      fetchList(this.listQuery).then(response => {
-        this.module = response.items
         this.listLoading = false;
       }).catch(err => {
         console.log(err)

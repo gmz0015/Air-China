@@ -13,6 +13,7 @@ for (let i = 0; i < count; i++) {
     code: '@character(upper)@character(number)@character(number)',
     name: '@title',
     tutor: '@first @last',
+    // aims: 
     'status|1': ['Published', 'Draft', 'Deleted']
   }))
 }
