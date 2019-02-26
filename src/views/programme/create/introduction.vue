@@ -63,14 +63,10 @@
       </el-card>
     </el-row>
   </div>
-
-
 </template>
 
 <script>
 import Mallki from '@/components/TextHoverEffect/Mallki'
-import index from './index'
-import B1 from './B1'
 
 export default {
   name: 'Introduction',

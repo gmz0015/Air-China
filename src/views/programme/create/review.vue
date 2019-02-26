@@ -1,6 +1,6 @@
 <template>
   <div>
-    This is Review Step. 
+    This is Review Step.
   </div>
 </template>
 

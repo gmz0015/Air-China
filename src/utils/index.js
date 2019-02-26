@@ -95,17 +95,17 @@ export function getQueryObject(url) {
  * @param {Sting} val input value
  * @returns {number} output value
  */
-export function getByteLen(val) {
-  let len = 0
-  for (let i = 0; i < val.length; i++) {
-    if (val[i].match(/[^\x00-\xff]/gi) != null) {
-      len += 1
-    } else {
-      len += 0.5
-    }
-  }
-  return Math.floor(len)
-}
+// export function getByteLen(val) {
+//   let len = 0
+//   for (let i = 0; i < val.length; i++) {
+//     if (val[i].match(/[^\x00-\xff]/gi) != null) {
+//       len += 1
+//     } else {
+//       len += 0.5
+//     }
+//   }
+//   return Math.floor(len)
+// }
 
 export function cleanArray(actual) {
   const newArray = []

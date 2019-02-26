@@ -59,7 +59,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">Core Modules</div>
           <div >
-            <el-table :data="list.core_module" v-loading="listLoading">
+            <el-table v-loading="listLoading" :data="list.core_module">
 
               <el-table-column label="Code">
                 <template slot-scope="scope">
@@ -88,7 +88,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">Optional Modules</div>
           <div >
-            <el-table :data="list.optional_module" v-loading="listLoading">
+            <el-table v-loading="listLoading" :data="list.optional_module">
 
               <el-table-column label="Code">
                 <template slot-scope="scope">
@@ -154,10 +154,10 @@ export default {
   },
   methods: {
     getData(id) {
-      this.listLoading = true;
+      this.listLoading = true
       fetchProgramme(id).then(response => {
         this.list = response.items
-        this.listLoading = false;
+        this.listLoading = false
       }).catch(err => {
         console.log(err)
       })

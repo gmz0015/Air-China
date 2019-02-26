@@ -3,15 +3,17 @@
 
     <el-button @click="clearFilter">Clear All Filters</el-button>
 
-    <el-table ref="programmeOverviewTable" :data="list" v-loading="listLoading" :default-sort = "{prop: 'id', order: 'ascending'}">
+    <el-table
+      v-loading="listLoading"
+      ref="programmeOverviewTable"
+      :data="list"
+      :default-sort = "{prop: 'id', order: 'ascending'}">
 
       <!-- ID -->
-      <el-table-column align="center" label="ID" width="95" prop="id" sortable>
-      </el-table-column>
+      <el-table-column align="center" label="ID" width="95" prop="id" sortable/>
 
       <!-- Title -->
-      <el-table-column label="Title" prop="title">
-      </el-table-column>
+      <el-table-column prop="title" label="Title"/>
 
       <!-- Author -->
       <el-table-column label="Author" width="110" align="center">
@@ -21,10 +23,16 @@
       </el-table-column>
 
       <!-- Status -->
-      <el-table-column class-name="status-col" prop="status" label="Status" width="110" align="center" sortable
+      <el-table-column
         :filters="[{ text: 'Published', value: 'Published' }, { text: 'Draft', value: 'Draft' }, { text: 'Deleted', value: 'Deleted' }]"
         :filter-method="filterStatus"
-        filter-placement="bottom-end">
+        filter-placement="bottom-end"
+        class-name="status-col"
+        prop="status"
+        label="Status"
+        width="110"
+        align="center"
+        sortable>
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter" >{{ scope.row.status }}</el-tag>
         </template>
@@ -86,11 +94,11 @@ export default {
       })
     },
     clearFilter() {
-      this.$refs.programmeOverviewTable.clearFilter();
+      this.$refs.programmeOverviewTable.clearFilter()
     },
     filterStatus(value, row) {
-      return row.status === value;
-    },
+      return row.status === value
+    }
   }
 }
 </script>

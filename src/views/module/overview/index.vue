@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <el-table :data="list" v-loading="listLoading">
+    <el-table v-loading="listLoading" :data="list">
 
       <!-- ID -->
       <el-table-column align="center" label="ID" width="95">

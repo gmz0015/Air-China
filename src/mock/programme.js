@@ -10,8 +10,8 @@ for (let i = 0; i < count; i++) {
     title: '@title(5, 10)',
     author: '@name',
     content: '@paragraph',
-    'core_module|1-10': [ 'Core Module #@character(number)@character(number)'],
-    'optional_module|1-10': [ 'Optional Module #@character(number)@character(number)'],
+    'core_module|1-10': ['Core Module #@character(number)@character(number)'],
+    'optional_module|1-10': ['Optional Module #@character(number)@character(number)'],
     'status|1': ['Published', 'Draft', 'Deleted']
   }))
 }
