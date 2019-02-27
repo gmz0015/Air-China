@@ -2,8 +2,9 @@
   <div class="app-container">
 
     <!-- Step -->
-    <el-steps :active="active" align-center>
+    <el-steps :active="active" finish-status="success" align-center>
       <el-step title="Introduction"/>
+      <el-step title="A" description="Core Information"/>
       <el-step title="B1" description="Programme Content"/>
       <el-step title="B2" description="Reference Points and Consultation"/>
       <el-step title="B3" description="Prospectus Information"/>
@@ -15,12 +16,13 @@
     <!-- Form -->
     <keep-alive>
       <introduction v-if="active==0"/>
-      <B1 v-if="active==1"/>
-      <B2 v-if="active==2"/>
-      <B3 v-if="active==3"/>
-      <B4 v-if="active==4"/>
-      <B5 v-if="active==5"/>
-      <review v-if="active==6"/>
+      <A v-if="active==1"/>
+      <B1 v-if="active==2"/>
+      <B2 v-if="active==3"/>
+      <B3 v-if="active==4"/>
+      <B4 v-if="active==5"/>
+      <B5 v-if="active==6"/>
+      <review v-if="active==7"/>
     </keep-alive>
 
     <!-- Bottom of Form -->
@@ -33,6 +35,7 @@
 
 <script>
 import introduction from './introduction'
+import A from './A'
 import B1 from './B1'
 import B2 from './B2'
 import B3 from './B3'
@@ -42,7 +45,7 @@ import review from './review'
 
 export default {
   name: 'Index',
-  components: { introduction, B1, B2, B3, B4, B5, review },
+  components: { introduction, A, B1, B2, B3, B4, B5, review },
   data() {
     return {
       form: {
