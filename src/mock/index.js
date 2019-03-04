@@ -2,6 +2,8 @@ import Mock from 'mockjs'
 import userAPI from './user'
 import articleAPI from './article'
 import programmeAPI from './programme'
+import programmeModuleAPI from './programme_module'
+import programmeCoreModuleAPI from './programme_core_module'
 import moduleAPI from './module'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
@@ -33,6 +35,8 @@ Mock.mock(/\/article\/update/, 'post', articleAPI.updateArticle)
 // programme
 Mock.mock(/\/programme\/list/, 'get', programmeAPI.getList)
 Mock.mock(/\/programme\/detail/, 'get', programmeAPI.getProgramme)
+Mock.mock(/\/programme\/module\/core/, 'get', programmeCoreModuleAPI.getProgrammeModule)
+Mock.mock(/\/programme\/module\/optional/, 'get', programmeModuleAPI.getProgrammeModule)
 
 // Module
 Mock.mock(/\/module\/list/, 'get', moduleAPI.getList)

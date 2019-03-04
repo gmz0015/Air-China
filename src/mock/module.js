@@ -13,7 +13,10 @@ for (let i = 0; i < count; i++) {
     code: '@character(upper)@character(number)@character(number)',
     name: '@title',
     tutor: '@first @last',
-    'status|1': ['Published', 'Draft', 'Deleted']
+    'status|1': ['Published', 'Draft', 'Deleted'],
+    'aims|1-4': ['@sentence(1, 3)'],
+    'skills|1-4': ['@sentence(1, 2)'],
+    'knowledges|1-4': ['@sentence(1, 3)']
   }))
 }
 

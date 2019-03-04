@@ -36,8 +36,51 @@
       <el-col :span="12" class="text-center">
         <el-card class="box-card">
           <div slot="header" class="clearfix">Status</div>
-          <div >
+          <div>
             <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="20" style="margin-top:25px;">
+
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div>
+            <el-table >
+              <el-table-column label="No.">
+                <template slot-scope="scope">
+                  {{ scope.aims }}
+                </template>
+              </el-table-column>
+
+              <el-table-column label="Aim">
+                <template v-for="aim in list.aims">
+                  {{ aim }}
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-card>
+      </el-col>
+
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Skills</div>
+          <div >
+            {{ list.skills }}
+          </div>
+        </el-card>
+      </el-col>
+
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">Knowledges</div>
+          <div >
+            <template v-for="knowledge in list.knowledges">
+              {{ knowledge }}
+            </template>
           </div>
         </el-card>
       </el-col>
@@ -52,7 +95,6 @@
         </div>
       </el-card>
     </el-row>
-
   </div>
 </template>
 
@@ -79,6 +121,7 @@ export default {
   },
   created() {
     const id = this.$route.params && this.$route.params.id
+    console.log('id is: ' + id)
     this.$message(id)
     this.fetchData(id)
   },
@@ -86,6 +129,7 @@ export default {
     fetchData(id) {
       fetchModule(id).then(response => {
         this.list = response.items
+        console.log(this.list.aims)
       }).catch(err => {
         console.log(err)
       })
@@ -93,3 +137,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+</style>

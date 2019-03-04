@@ -15,3 +15,19 @@ export function fetchProgramme(id) {
     params: { id }
   })
 }
+
+export function fetchProgrammeCoreModule(id) {
+  return request({
+    url: '/programme/module/core',
+    method: 'get',
+    params: { id }
+  })
+}
+
+export function fetchProgrammeModule(id) {
+  return request({
+    url: '/programme/module/optional',
+    method: 'get',
+    params: { id }
+  })
+}
