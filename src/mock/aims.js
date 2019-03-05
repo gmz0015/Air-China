@@ -1,8 +1,7 @@
 import Mock from 'mockjs'
-import { param2Obj } from './utils'
 
 const List = []
-const count = 10
+const count = 4
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
@@ -35,11 +34,6 @@ export default {
           items: module
         }
       }
-    }
-  },
-  getModuleByAims: (config) => {
-    return {
-      items: new Array(List[3], List[7], List[9])
     }
   }
 }

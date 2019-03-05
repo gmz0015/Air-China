@@ -41,5 +41,6 @@ Mock.mock(/\/programme\/module\/optional/, 'get', programmeModuleAPI.getProgramm
 // Module
 Mock.mock(/\/module\/list/, 'get', moduleAPI.getList)
 Mock.mock(/\/module\/detail/, 'get', moduleAPI.getModule)
+Mock.mock(/\/module\/byAim/, 'get', moduleAPI.getModuleByAims)
 
 export default Mock

@@ -15,3 +15,11 @@ export function fetchModule(id) {
     params: { id }
   })
 }
+
+export function fetchModuleByAim(id) {
+  return request({
+    url: '/module/byAim',
+    method: 'get',
+    params: { id }
+  })
+}

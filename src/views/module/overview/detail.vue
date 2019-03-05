@@ -45,43 +45,185 @@
 
     <el-row :gutter="20" style="margin-top:25px;">
 
-      <el-col :span="8">
+      <el-col>
         <el-card class="box-card">
           <div>
-            <el-table >
-              <el-table-column label="No.">
-                <template slot-scope="scope">
-                  {{ scope.aims }}
-                </template>
-              </el-table-column>
+            <el-table :data="list.aims">
+              <el-table-column type="expand">
+               <template slot-scope="props">
+                 <el-table :data="listByAim">
+                   <!-- ID -->
+                   <el-table-column align="center" label="ID" width="95">
+                     <template slot-scope="scope">
+                       <span> {{ scope.row.id }} </span>
+                     </template>
+                   </el-table-column>
+
+                   <!-- Title -->
+                   <el-table-column label="Title">
+                     <template slot-scope="scope">
+                       {{ scope.row.title }}
+                     </template>
+                   </el-table-column>
+
+                   <!-- Author -->
+                   <el-table-column label="Author" width="110" align="center">
+                     <template slot-scope="scope">
+                       <span>{{ scope.row.author }}</span>
+                     </template>
+                   </el-table-column>
+
+                   <!-- Status -->
+                   <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                     <template slot-scope="scope">
+                       <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                     </template>
+                   </el-table-column>
+
+                   <!-- Botton -->
+                   <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                     <template slot-scope="scope">
+
+                       <!-- Edit -->
+                       <router-link :to="'/module/detail/'+scope.row.id">
+                         <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                       </router-link>
+                     </template>
+                   </el-table-column>
+                 </el-table>
+               </template>
+             </el-table-column>
+              <el-table-column type="index" label="No."/>
 
               <el-table-column label="Aim">
-                <template v-for="aim in list.aims">
-                  {{ aim }}
+                <template slot-scope="scope">
+                  <span> {{ scope.row }} </span>
                 </template>
               </el-table-column>
             </el-table>
           </div>
         </el-card>
       </el-col>
+    </el-row>
 
-      <el-col :span="8">
+    <el-row :gutter="20" style="margin-top:25px;">
+      <el-col >
         <el-card class="box-card">
-          <div slot="header" class="clearfix">Skills</div>
-          <div >
-            {{ list.skills }}
-          </div>
+          <el-table :data="list.skills">
+            <el-table-column type="expand">
+             <template slot-scope="props">
+               <el-table :data="listByAim">
+                 <!-- ID -->
+                 <el-table-column align="center" label="ID" width="95">
+                   <template slot-scope="scope">
+                     <span> {{ scope.row.id }} </span>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Title -->
+                 <el-table-column label="Title">
+                   <template slot-scope="scope">
+                     {{ scope.row.title }}
+                   </template>
+                 </el-table-column>
+
+                 <!-- Author -->
+                 <el-table-column label="Author" width="110" align="center">
+                   <template slot-scope="scope">
+                     <span>{{ scope.row.author }}</span>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Status -->
+                 <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                   <template slot-scope="scope">
+                     <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Botton -->
+                 <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                   <template slot-scope="scope">
+
+                     <!-- Edit -->
+                     <router-link :to="'/module/detail/'+scope.row.id">
+                       <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                     </router-link>
+                   </template>
+                 </el-table-column>
+               </el-table>
+             </template>
+           </el-table-column>
+
+            <el-table-column type="index" label="No."/>
+
+            <el-table-column label="Skill">
+              <template slot-scope="scope">
+                <span> {{ scope.row }} </span>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
+    </el-row>
 
-      <el-col :span="8">
+    <el-row :gutter="20" style="margin-top:25px;">
+      <el-col>
         <el-card class="box-card">
-          <div slot="header" class="clearfix">Knowledges</div>
-          <div >
-            <template v-for="knowledge in list.knowledges">
-              {{ knowledge }}
-            </template>
-          </div>
+          <el-table :data="list.knowledges">
+            <el-table-column type="expand">
+             <template slot-scope="props">
+               <el-table :data="listByAim">
+                 <!-- ID -->
+                 <el-table-column align="center" label="ID" width="95">
+                   <template slot-scope="scope">
+                     <span> {{ scope.row.id }} </span>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Title -->
+                 <el-table-column label="Title">
+                   <template slot-scope="scope">
+                     {{ scope.row.title }}
+                   </template>
+                 </el-table-column>
+
+                 <!-- Author -->
+                 <el-table-column label="Author" width="110" align="center">
+                   <template slot-scope="scope">
+                     <span>{{ scope.row.author }}</span>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Status -->
+                 <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                   <template slot-scope="scope">
+                     <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                   </template>
+                 </el-table-column>
+
+                 <!-- Botton -->
+                 <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                   <template slot-scope="scope">
+
+                     <!-- Edit -->
+                     <router-link :to="'/module/detail/'+scope.row.id">
+                       <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                     </router-link>
+                   </template>
+                 </el-table-column>
+               </el-table>
+             </template>
+           </el-table-column>
+           
+            <el-table-column type="index" label="No."/>
+
+            <el-table-column label="Knowledge">
+              <template slot-scope="scope">
+                <span> {{ scope.row }} </span>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
     </el-row>
@@ -91,7 +233,7 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">History</div>
         <div >
-          {{ list.content }}
+          <span>{{ list.content }}</span>
         </div>
       </el-card>
     </el-row>
@@ -99,7 +241,7 @@
 </template>
 
 <script>
-import { fetchModule } from '@/api/module'
+import { fetchModule, fetchModuleByAim } from '@/api/module'
 
 // TODO: check the definition of data, need to definete the id, author, ...
 export default {
@@ -116,20 +258,31 @@ export default {
   },
   data() {
     return {
-      list: null
+      list: null,
+      listByAim: null,
+      listBySkill: null,
+      listByKnowledge: null
     }
   },
   created() {
     const id = this.$route.params && this.$route.params.id
     console.log('id is: ' + id)
-    this.$message(id)
     this.fetchData(id)
+    this.fetchDataByAim(id)
   },
   methods: {
     fetchData(id) {
       fetchModule(id).then(response => {
         this.list = response.items
-        console.log(this.list.aims)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    fetchDataByAim(id) {
+      fetchModuleByAim(id).then(response => {
+        this.listByAim = response.items
+        console.log('byAim')
+        console.log(this.listByAim)
       }).catch(err => {
         console.log(err)
       })
