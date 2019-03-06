@@ -50,49 +50,49 @@
           <div>
             <el-table :data="list.aims">
               <el-table-column type="expand">
-               <template slot-scope="props">
-                 <el-table :data="listByAim">
-                   <!-- ID -->
-                   <el-table-column align="center" label="ID" width="95">
-                     <template slot-scope="scope">
-                       <span> {{ scope.row.id }} </span>
-                     </template>
-                   </el-table-column>
+                <template slot-scope="props">
+                  <el-table :data="listByAim">
+                    <!-- ID -->
+                    <el-table-column align="center" label="ID" width="95">
+                      <template slot-scope="scope">
+                        <span> {{ scope.row.id }} </span>
+                      </template>
+                    </el-table-column>
 
-                   <!-- Title -->
-                   <el-table-column label="Title">
-                     <template slot-scope="scope">
-                       {{ scope.row.title }}
-                     </template>
-                   </el-table-column>
+                    <!-- Title -->
+                    <el-table-column label="Title">
+                      <template slot-scope="scope">
+                        {{ scope.row.title }}
+                      </template>
+                    </el-table-column>
 
-                   <!-- Author -->
-                   <el-table-column label="Author" width="110" align="center">
-                     <template slot-scope="scope">
-                       <span>{{ scope.row.author }}</span>
-                     </template>
-                   </el-table-column>
+                    <!-- Author -->
+                    <el-table-column label="Author" width="110" align="center">
+                      <template slot-scope="scope">
+                        <span>{{ scope.row.author }}</span>
+                      </template>
+                    </el-table-column>
 
-                   <!-- Status -->
-                   <el-table-column class-name="status-col" label="Status" width="110" align="center">
-                     <template slot-scope="scope">
-                       <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-                     </template>
-                   </el-table-column>
+                    <!-- Status -->
+                    <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                      <template slot-scope="scope">
+                        <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                      </template>
+                    </el-table-column>
 
-                   <!-- Botton -->
-                   <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
-                     <template slot-scope="scope">
+                    <!-- Botton -->
+                    <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                      <template slot-scope="scope">
 
-                       <!-- Edit -->
-                       <router-link :to="'/module/detail/'+scope.row.id">
-                         <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
-                       </router-link>
-                     </template>
-                   </el-table-column>
-                 </el-table>
-               </template>
-             </el-table-column>
+                        <!-- Edit -->
+                        <router-link :to="'/module/detail/'+scope.row.id">
+                          <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                        </router-link>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </template>
+              </el-table-column>
               <el-table-column type="index" label="No."/>
 
               <el-table-column label="Aim">
@@ -111,49 +111,49 @@
         <el-card class="box-card">
           <el-table :data="list.skills">
             <el-table-column type="expand">
-             <template slot-scope="props">
-               <el-table :data="listByAim">
-                 <!-- ID -->
-                 <el-table-column align="center" label="ID" width="95">
-                   <template slot-scope="scope">
-                     <span> {{ scope.row.id }} </span>
-                   </template>
-                 </el-table-column>
+              <template slot-scope="props">
+                <el-table :data="listByAim">
+                  <!-- ID -->
+                  <el-table-column align="center" label="ID" width="95">
+                    <template slot-scope="scope">
+                      <span> {{ scope.row.id }} </span>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Title -->
-                 <el-table-column label="Title">
-                   <template slot-scope="scope">
-                     {{ scope.row.title }}
-                   </template>
-                 </el-table-column>
+                  <!-- Title -->
+                  <el-table-column label="Title">
+                    <template slot-scope="scope">
+                      {{ scope.row.title }}
+                    </template>
+                  </el-table-column>
 
-                 <!-- Author -->
-                 <el-table-column label="Author" width="110" align="center">
-                   <template slot-scope="scope">
-                     <span>{{ scope.row.author }}</span>
-                   </template>
-                 </el-table-column>
+                  <!-- Author -->
+                  <el-table-column label="Author" width="110" align="center">
+                    <template slot-scope="scope">
+                      <span>{{ scope.row.author }}</span>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Status -->
-                 <el-table-column class-name="status-col" label="Status" width="110" align="center">
-                   <template slot-scope="scope">
-                     <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-                   </template>
-                 </el-table-column>
+                  <!-- Status -->
+                  <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                    <template slot-scope="scope">
+                      <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Botton -->
-                 <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
-                   <template slot-scope="scope">
+                  <!-- Botton -->
+                  <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                    <template slot-scope="scope">
 
-                     <!-- Edit -->
-                     <router-link :to="'/module/detail/'+scope.row.id">
-                       <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
-                     </router-link>
-                   </template>
-                 </el-table-column>
-               </el-table>
-             </template>
-           </el-table-column>
+                      <!-- Edit -->
+                      <router-link :to="'/module/detail/'+scope.row.id">
+                        <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                      </router-link>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </template>
+            </el-table-column>
 
             <el-table-column type="index" label="No."/>
 
@@ -172,50 +172,50 @@
         <el-card class="box-card">
           <el-table :data="list.knowledges">
             <el-table-column type="expand">
-             <template slot-scope="props">
-               <el-table :data="listByAim">
-                 <!-- ID -->
-                 <el-table-column align="center" label="ID" width="95">
-                   <template slot-scope="scope">
-                     <span> {{ scope.row.id }} </span>
-                   </template>
-                 </el-table-column>
+              <template slot-scope="props">
+                <el-table :data="listByAim">
+                  <!-- ID -->
+                  <el-table-column align="center" label="ID" width="95">
+                    <template slot-scope="scope">
+                      <span> {{ scope.row.id }} </span>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Title -->
-                 <el-table-column label="Title">
-                   <template slot-scope="scope">
-                     {{ scope.row.title }}
-                   </template>
-                 </el-table-column>
+                  <!-- Title -->
+                  <el-table-column label="Title">
+                    <template slot-scope="scope">
+                      {{ scope.row.title }}
+                    </template>
+                  </el-table-column>
 
-                 <!-- Author -->
-                 <el-table-column label="Author" width="110" align="center">
-                   <template slot-scope="scope">
-                     <span>{{ scope.row.author }}</span>
-                   </template>
-                 </el-table-column>
+                  <!-- Author -->
+                  <el-table-column label="Author" width="110" align="center">
+                    <template slot-scope="scope">
+                      <span>{{ scope.row.author }}</span>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Status -->
-                 <el-table-column class-name="status-col" label="Status" width="110" align="center">
-                   <template slot-scope="scope">
-                     <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-                   </template>
-                 </el-table-column>
+                  <!-- Status -->
+                  <el-table-column class-name="status-col" label="Status" width="110" align="center">
+                    <template slot-scope="scope">
+                      <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+                    </template>
+                  </el-table-column>
 
-                 <!-- Botton -->
-                 <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
-                   <template slot-scope="scope">
+                  <!-- Botton -->
+                  <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+                    <template slot-scope="scope">
 
-                     <!-- Edit -->
-                     <router-link :to="'/module/detail/'+scope.row.id">
-                       <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
-                     </router-link>
-                   </template>
-                 </el-table-column>
-               </el-table>
-             </template>
-           </el-table-column>
-           
+                      <!-- Edit -->
+                      <router-link :to="'/module/detail/'+scope.row.id">
+                        <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
+                      </router-link>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </template>
+            </el-table-column>
+
             <el-table-column type="index" label="No."/>
 
             <el-table-column label="Knowledge">
