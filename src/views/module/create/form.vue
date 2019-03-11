@@ -33,14 +33,64 @@
         </div>
       </el-card>
 
-      <el-card
-        v-for="(assessment, index) in assessments"
-        class="box-card"
-        style="margin-top:25px;">
-        <div slot="header" class="clearfix" text="'Assessment' + index">
-          <span>Assessment {{ index }}</span>
-        </div>
-      </el-card>
+      <el-button
+        size="small"
+        style="margin-top:25px"
+        @click="addTab(editableTabsValue)">
+        Add Assessment
+      </el-button>
+
+      <el-tabs v-model="editableTabsValue" type="border-card" closable @tab-remove="removeTab" style="margin-top:25px">
+        <el-tab-pane
+          v-for="(assessment, index) in assessments"
+          :key="assessment.table_name"
+          :label="'Assessment ' + (index+1)"
+          :name="assessment.table_name">
+          <div style="margin-right:10px">
+
+
+            <!-- Format of Assessment -->
+            <el-form-item
+              label="What format will this assessment take"
+              prop="assessment.format">
+              <el-select v-model="assessment.format" placeholder="Please select the format">
+                <el-option label="MOLE quiz" value="s_1"></el-option>
+                <el-option label="Assignment" value="s_2"></el-option>
+                <el-option label="Assessed lab" value="s_1_2"></el-option>
+                <el-option label="Group Systems Design Project" value="s_1_2"></el-option>
+                <el-option label="Formal exam" value="s_1_2"></el-option>
+                <el-option label="Portfolio" value="s_1_2"></el-option>
+                <el-option label="Exercise/problem sheet" value="s_1_2"></el-option>
+                <el-option label="Presentation" value="s_1_2"></el-option>
+              </el-select>
+            </el-form-item>
+
+            <!-- Name of Assessment -->
+            <el-form-item
+              label="The name of this assessment">
+              <el-input v-model="assessment.name"/>
+            </el-form-item>
+
+            <!-- What percentage of the module is this assessment with -->
+            <el-form-item
+              label="What percentage of the module is this assessment with">
+              <el-input v-model="assessment.percentage"/>
+            </el-form-item>
+
+            <!-- What date will this assessment be released to students -->
+            <el-form-item
+              label="What date will this assessment be released to students">
+              <el-input v-model="assessment.date_released"/>
+            </el-form-item>
+
+            <!-- What date will this assessment be handed in/submitted -->
+            <el-form-item
+              label="What date will this assessment be handed in/submitted">
+              <el-input v-model="assessment.date_submitted"/>
+            </el-form-item>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
 
     </el-form>
   </div>
@@ -72,6 +122,7 @@ export default {
         ]
       },
       assessments: [{
+        table_name: '1',
         format: '',
         name: '',
         percentage: '',
@@ -79,13 +130,12 @@ export default {
         date_submitted: ''
       }],
       isShare: true,
-      active: 1
+      active: 1,
+      editableTabsValue: '1',
+      tabIndex: 1
     }
   },
-  method: {
-    // submitForm() {
-    //   this.$message('Error Submit!!')
-    // },
+  methods: {
     onCancel() {
       this.$message({
         message: 'cancel!',
@@ -102,20 +152,36 @@ export default {
         }
       })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
-    },
-    removeDomain(item) {
-      var index = this.form_A.domains.indexOf(item)
-      if (index !== -1) {
-        this.form_A.domains.splice(index, 1)
-      }
-    },
-    addDomain() {
-      this.form_A.domains.push({
-        value: '',
-        key: Date.now()
+
+    addTab(targetName) {
+      let newTabName = ++this.tabIndex + ''
+      this.assessments.push({
+        table_name: newTabName,
+        format: '',
+        name: '',
+        percentage: '',
+        date_released: '',
+        date_submitted: ''
       })
+      this.editableTabsValue = newTabName
+      console.log(newTabName)
+    },
+    removeTab(targetName) {
+      let tabs = this.assessments
+      let activeName = this.editableTabsValue
+      if (activeName === targetName) {
+        tabs.forEach((tab, index) => {
+          if (tab.table_name === targetName) {
+            let nextTab = tabs[index + 1] || tabs[index - 1]
+            if (nextTab) {
+              activeName = nextTab.table_name
+            }
+          }
+        })
+      }
+
+      this.editableTabsValue = activeName
+      this.assessments = tabs.filter(tab => tab.table_name !== targetName)
     }
   }
 }

@@ -12,9 +12,9 @@
           v-for="(domain, index) in dynamicValidateForm.domains"
           :label="'域名' + index"
           :key="domain.key"
-          :prop="'domains.' + index + '.value'"
+          :prop="'domains.' + index + '.number'"
           :rules="{ required: true, message: '域名不能为空', trigger: 'blur' }">
-          <el-input v-model="domain.value"/><el-button @click.prevent="removeDomain(domain)">删除</el-button>
+          <el-input v-model="domain.number"/><el-button @click.prevent="removeDomain(domain)">删除</el-button>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
@@ -60,7 +60,7 @@ export default {
     },
     addDomain() {
       this.dynamicValidateForm.domains.push({
-        value: '',
+        number: '',
         key: Date.now()
       })
     }
