@@ -36,7 +36,7 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Home' }
+        meta: { title: 'Home', icon: 'home'}
       }
     ]
   },
@@ -46,13 +46,13 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/programme/overview',
     name: 'Programme',
-    meta: { title: 'Programme' },
+    meta: { title: 'Programme', icon: 'programme' },
     children: [
       {
         path: 'overview',
         name: 'Overview Programme',
         component: () => import('@/views/programme/overview/index'),
-        meta: { title: 'Overview', icon: 'form' }
+        meta: { title: 'Overview', icon: 'overview' }
       },
       {
         path: 'detail/:id(\\d+)',
@@ -65,7 +65,7 @@ export const constantRouterMap = [
         path: 'create',
         name: 'Create Programme',
         component: () => import('@/views/programme/create/index'),
-        meta: { title: 'Create', icon: 'form' }
+        meta: { title: 'Create', icon: 'create' }
       }
     ]
   },
@@ -75,13 +75,13 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/module/overview',
     name: 'Module',
-    meta: { title: 'Module' },
+    meta: { title: 'Module', icon:'module' },
     children: [
       {
         path: 'overview',
         name: 'Overview Module',
         component: () => import('@/views/module/overview/index'),
-        meta: { title: 'Overview', icon: 'form' }
+        meta: { title: 'Overview', icon: 'overview' }
       },
       {
         path: 'detail/:id(\\d+)',
@@ -94,7 +94,7 @@ export const constantRouterMap = [
         path: 'create',
         name: 'Create Module',
         component: () => import('@/views/module/create/index'),
-        meta: { title: 'Create', icon: 'form' }
+        meta: { title: 'Create', icon: 'create' }
       }
     ]
   },

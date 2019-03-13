@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="form_A" label-position='top' :model="form" :rules="rules_A">
+    <el-form ref="form_A" :model="form" :rules="rules_A" label-position="top">
 
       <el-card class="box-card">
         <div slot="header" class="clearfix">
@@ -25,9 +25,9 @@
           <!-- Semester -->
           <el-form-item label="Semester" prop="semester" label-width="180px">
             <el-select v-model="form.semester" placeholder="Please select the semester">
-              <el-option label="Semester 1 only" value="s_1"></el-option>
-              <el-option label="Semester 2 only" value="s_2"></el-option>
-              <el-option label="BOTH Semester" value="s_1_2"></el-option>
+              <el-option label="Semester 1 only" value="s_1"/>
+              <el-option label="Semester 2 only" value="s_2"/>
+              <el-option label="BOTH Semester" value="s_1_2"/>
             </el-select>
           </el-form-item>
         </div>
@@ -40,7 +40,7 @@
         Add Assessment
       </el-button>
 
-      <el-tabs v-model="editableTabsValue" type="border-card" closable @tab-remove="removeTab" style="margin-top:25px">
+      <el-tabs v-model="editableTabsValue" type="border-card" style="margin-top:25px" closable @tab-remove="removeTab">
         <el-tab-pane
           v-for="(assessment, index) in assessments"
           :key="assessment.table_name"
@@ -48,20 +48,19 @@
           :name="assessment.table_name">
           <div style="margin-right:10px">
 
-
             <!-- Format of Assessment -->
             <el-form-item
               label="What format will this assessment take"
               prop="assessment.format">
               <el-select v-model="assessment.format" placeholder="Please select the format">
-                <el-option label="MOLE quiz" value="s_1"></el-option>
-                <el-option label="Assignment" value="s_2"></el-option>
-                <el-option label="Assessed lab" value="s_1_2"></el-option>
-                <el-option label="Group Systems Design Project" value="s_1_2"></el-option>
-                <el-option label="Formal exam" value="s_1_2"></el-option>
-                <el-option label="Portfolio" value="s_1_2"></el-option>
-                <el-option label="Exercise/problem sheet" value="s_1_2"></el-option>
-                <el-option label="Presentation" value="s_1_2"></el-option>
+                <el-option label="MOLE quiz" value="s_1"/>
+                <el-option label="Assignment" value="s_2"/>
+                <el-option label="Assessed lab" value="s_1_2"/>
+                <el-option label="Group Systems Design Project" value="s_1_2"/>
+                <el-option label="Formal exam" value="s_1_2"/>
+                <el-option label="Portfolio" value="s_1_2"/>
+                <el-option label="Exercise/problem sheet" value="s_1_2"/>
+                <el-option label="Presentation" value="s_1_2"/>
               </el-select>
             </el-form-item>
 
@@ -154,7 +153,7 @@ export default {
     },
 
     addTab(targetName) {
-      let newTabName = ++this.tabIndex + ''
+      const newTabName = ++this.tabIndex + ''
       this.assessments.push({
         table_name: newTabName,
         format: '',
@@ -167,12 +166,12 @@ export default {
       console.log(newTabName)
     },
     removeTab(targetName) {
-      let tabs = this.assessments
+      const tabs = this.assessments
       let activeName = this.editableTabsValue
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
           if (tab.table_name === targetName) {
-            let nextTab = tabs[index + 1] || tabs[index - 1]
+            const nextTab = tabs[index + 1] || tabs[index - 1]
             if (nextTab) {
               activeName = nextTab.table_name
             }

@@ -8,7 +8,7 @@ for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
     title: '@title(5, 10)',
-    author: '@name',
+    author: '@first @last',
     content: '@paragraph',
     code: '@character(upper)@character(number)@character(number)',
     name: '@title',
@@ -39,7 +39,7 @@ export default {
   },
   getModuleByAims: (config) => {
     return {
-      items: new Array(List[3], List[7], List[9])
+      items: [List[3], List[7], List[9]]
     }
   }
 }
