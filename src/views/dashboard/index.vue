@@ -5,9 +5,10 @@
   </div>
 </template>
 
+<script src="echarts.min.js"></script>
 <script>
 import { mapGetters } from 'vuex'
-
+import echarts from 'echarts'
 export default {
   name: 'Dashboard',
   computed: {

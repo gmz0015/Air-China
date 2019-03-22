@@ -75,7 +75,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/module/overview',
     name: 'Module',
-    meta: { title: 'Module', icon:'module' },
+    meta: { title: 'Module', icon: 'module' },
     children: [
       {
         path: 'overview',
