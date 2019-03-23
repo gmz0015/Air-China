@@ -40,6 +40,34 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/crew',
+    component: Layout,
+    redirect: '/crew/overview',
+    name: 'Crew',
+    meta: { title: 'Crew', icon: 'crew' },
+    children: [
+      {
+        path: 'overview',
+        name: 'Overview',
+        component: () => import('@/views/crew/overview/index'),
+        meta: { title: 'Overview', icon: 'overview' }
+      },
+      {
+        path: 'detail/:id(\\d+)',
+        component: () => import('@/views/crew/overview/detail'),
+        name: 'ProgrammeDetail',
+        meta: { title: 'Detail', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'create',
+        name: 'Create Programme',
+        component: () => import('@/views/programme/create/index'),
+        meta: { title: 'Create', icon: 'create' }
+      }
+    ]
+  },
 
   {
     path: '/programme',

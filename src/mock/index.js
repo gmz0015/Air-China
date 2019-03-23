@@ -5,6 +5,7 @@ import programmeAPI from './programme'
 import programmeModuleAPI from './programme_module'
 import programmeCoreModuleAPI from './programme_core_module'
 import moduleAPI from './module'
+import crewAPI from './crew'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -42,5 +43,9 @@ Mock.mock(/\/programme\/module\/optional/, 'get', programmeModuleAPI.getProgramm
 Mock.mock(/\/module\/list/, 'get', moduleAPI.getList)
 Mock.mock(/\/module\/detail/, 'get', moduleAPI.getModule)
 Mock.mock(/\/module\/byAim/, 'get', moduleAPI.getModuleByAims)
+
+// Crew
+Mock.mock(/\/crew\/list/, 'get', crewAPI.getList)
+Mock.mock(/\/crew\/detail/, 'get', crewAPI.getModule)
 
 export default Mock
