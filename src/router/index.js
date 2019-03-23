@@ -36,7 +36,7 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Home', icon: 'home'}
+        meta: { title: 'Home', icon: 'home' }
       }
     ]
   },
@@ -56,14 +56,14 @@ export const constantRouterMap = [
       {
         path: 'detail/:id(\\d+)',
         component: () => import('@/views/crew/overview/detail'),
-        name: 'ProgrammeDetail',
+        name: 'Detail',
         meta: { title: 'Detail', noCache: true },
         hidden: true
       },
       {
         path: 'create',
         name: 'Create Programme',
-        component: () => import('@/views/programme/create/index'),
+        component: () => import('@/views/crew/overview/detail'),
         meta: { title: 'Create', icon: 'create' }
       }
     ]

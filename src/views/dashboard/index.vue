@@ -30,18 +30,18 @@
 
 <script>
 // import { mapGetters } from 'vuex'
-import echarts from 'echarts'
+// import echarts from 'echarts'
 import mapChart from './components/MapChart'
 import RaddarChart from './components/RaddarChart'
 import PieChart from './components/PieChart'
 import BarChart from './components/BarChart'
 
-const mapChartData = {
-  newVisitis: {
-    latitude: [3.2, 24.2, 34, 44, 54, 64, 74],
-    longitude: [3.2, 24.2, 34, 44, 54, 64, 74]
-  }
-}
+// const mapChartData = {
+//   newVisitis: {
+//     latitude: [3.2, 24.2, 34, 44, 54, 64, 74],
+//     longitude: [3.2, 24.2, 34, 44, 54, 64, 74]
+//   }
+// }
 
 const lineChartData = {
   newVisitis: {
@@ -70,19 +70,19 @@ export default {
     BarChart,
     mapChart
   },
-  data () {
+  data() {
     return {
     }
   },
-  created(){
+  created() {
   },
   method: {
     handleSetLineChartData(type) {
-      this.lineChartData = lineChartData["messages"]
+      this.lineChartData = lineChartData['messages']
     }
   },
-  computed: {
-  },
+  // computed: {
+  // },
   mounted() {
   }
 }

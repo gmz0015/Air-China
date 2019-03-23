@@ -45,7 +45,7 @@ Mock.mock(/\/module\/detail/, 'get', moduleAPI.getModule)
 Mock.mock(/\/module\/byAim/, 'get', moduleAPI.getModuleByAims)
 
 // Crew
-Mock.mock(/\/crew\/list/, 'get', crewAPI.getList)
-Mock.mock(/\/crew\/detail/, 'get', crewAPI.getModule)
+// Mock.mock(/\/api\/crew\/allCrew/, 'get', crewAPI.getList)
+Mock.mock(/\/api\/crew\/detail/, 'get', crewAPI.getModule)
 
 export default Mock

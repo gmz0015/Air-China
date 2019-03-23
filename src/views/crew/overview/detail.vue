@@ -1,123 +1,36 @@
 <template>
-  <div class="app-container">
+  <div class="detail-container">
+    <div class="detail">
 
-    <!-- ID -->
-    <el-row :gutter="20">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">ID</div>
-        <div >
-          {{ list.id }}
-        </div>
-      </el-card>
-    </el-row>
+      <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+        Weicome
+      </el-row>
 
-    <!-- Title -->
-    <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">Title</div>
-        <div >
-          {{ list.title }}
-        </div>
-      </el-card>
-    </el-row>
-
-    <!-- programme level learning outcomes -->
-    <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">Programme Level Learning Outcomes</div>
-        <div >
-          {{ list.content }}
-        </div>
-      </el-card>
-    </el-row>
-
-    <el-row :gutter="20" style="margin-top:25px;">
-      <!-- Author -->
-      <el-col :span="12" class="text-center">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">Author</div>
-          <div >
-            {{ list.author }}
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="24" :lg="8">
+          <div class="chart-wrapper">
+            <overview-chart/>
           </div>
-        </el-card>
-      </el-col>
-
-      <!-- Status -->
-      <el-col :span="12" class="text-center">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">Status</div>
-          <div >
-            <el-tag :type="list.status | statusFilter">{{ list.status }}</el-tag>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="8">
+          <div class="chart-wrapper">
+            <overview-chart/>
           </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="20" style="margin-top:25px;">
-      <!-- Core Modules -->
-      <el-col :span="12" class="text-center">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">Core Modules</div>
-          <div >
-            <el-table
-              v-loading="listLoading"
-              ref="core_module"
-              :data="listCoreModule"
-              tooltip-effect="dark"
-              @selection-change="handleSelectionChange">
-
-              <el-table-column type="selection" width="55"/>
-
-              <el-table-column label="Code" prop="code"/>
-
-              <el-table-column label="Name" prop="name"/>
-
-              <el-table-column label="Tutor" prop="tutor"/>
-            </el-table>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="8">
+          <div class="chart-wrapper">
+            <overview-chart/>
           </div>
-        </el-card>
-      </el-col>
+        </el-col>
+      </el-row>
 
-      <!-- Optional Modules -->
-      <el-col :span="12" class="text-center">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">Optional Modules</div>
-          <div >
-            <el-table v-loading="listLoading" :data="listModule" tooltip-effect="dark" @selection-change="handleSelectionChange">
-
-              <el-table-column type="selection" width="55"/>
-
-              <el-table-column label="Code" prop="code"/>
-
-              <el-table-column label="Name" prop="name"/>
-
-              <el-table-column label="Tutor" prop="tutor"/>
-            </el-table>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <el-button style="margin-top:25px;" @click="cancelSelection()">Cancel Selection</el-button>
-    <el-button style="margin-top:25px;" @click="getSelection()">Display the detail of the selected module(s)</el-button>
-
-    <!-- Edit History -->
-    <el-row :gutter="20" style="margin-top:25px;">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">History</div>
-        <div >
-          {{ list.content }}
-        </div>
-      </el-card>
-    </el-row>
-
+    </div>
   </div>
 </template>
 
 <script>
-import { fetchProgramme, fetchProgrammeModule, fetchProgrammeCoreModule } from '@/api/programme'
+import OverviewChart from './components/OverviewChart'
 
-// TODO: check the definition of data, need to definete the id, author, ...
 export default {
   name: 'Detail',
   filters: {
@@ -130,6 +43,9 @@ export default {
       return statusMap[status]
     }
   },
+  components: {
+    OverviewChart
+  },
   data() {
     return {
       list: null,
@@ -140,8 +56,8 @@ export default {
     }
   },
   created() {
-    const id = this.$route.params && this.$route.params.id
-    this.getData(id)
+    // const id = this.$route.params && this.$route.params.id
+    // this.getData(id)
   },
   methods: {
     getData(id) {
@@ -172,3 +88,15 @@ export default {
   }
 }
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.detail {
+  padding: 32px;
+  background-color: rgb(240, 242, 245);
+  .chart-wrapper {
+    background: #fff;
+    padding: 16px 16px 0;
+    margin-bottom: 32px;
+  }
+}
+</style>

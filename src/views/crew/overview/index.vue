@@ -5,30 +5,22 @@
 
     <el-table
       v-loading="listLoading"
-      ref="programmeOverviewTable"
+      ref="crewOverviewTable"
       :data="list"
-      :default-sort = "{prop: 'id', order: 'ascending'}">
+      :default-sort = "{prop: 'c', order: 'ascending'}">
 
-      <!-- ID -->
-      <el-table-column align="center" label="呼号" width="150" prop="callsign" sortable/>
+      <!-- Callsign -->
+      <el-table-column align="center" label="呼号" prop="callsign" width="150" :formatter="formatCallsign" sortable/>
 
-      <!-- Title -->
-      <el-table-column align="center" prop="rating" label="等级" width="150" sortable/>
+      <!-- Rating -->
+      <el-table-column align="center" label="等级" prop="rating" width="150" sortable/>
 
-      <!-- Author -->
+      <!-- Position -->
       <el-table-column label="职务" align="center">
         <template slot-scope="scope">
-        <el-table-row v-if=scope.row.normal>
-          <el-tag type="success">飞行员</el-tag>
-        </el-table-row>
-        <el-table-row v-if=scope.row.dispatch>
-          <el-tag type="warning">签派</el-tag>
-        </el-table-row>
-        <el-table-row v-if=scope.row.administrator>
-          <el-tag type="info">管理</el-tag>
-        </el-table-row>
-
-          <span>{{ scope.row.position }}</span>
+          <el-tag v-if="scope.row.normal" type="success">飞行员</el-tag>
+          <el-tag v-if="scope.row.dispatch" type="warning">签派</el-tag>
+          <el-tag v-if="scope.row.administrator" type="info">管理</el-tag>
         </template>
       </el-table-column>
 
@@ -60,7 +52,7 @@
           </el-button> -->
 
           <!-- Edit -->
-          <router-link :to="'/programme/detail/'+scope.row.id">
+          <router-link :to="'/crew/detail/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
           </router-link>
         </template>
@@ -96,15 +88,29 @@ export default {
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
-        this.list = response.items
-        this.total = response.total
+        this.list = response
+        console.log(response.length)
 
         // Just to simulate the time of the request
         this.listLoading = false
       })
     },
+    formatCallsign: function (row, column) {
+      console.log(column)
+      console.log(row.callsign)
+      if (row.callsign.length === 1) {
+        return '000' + row.callsign
+      }else if (row.callsign === 2) {
+        return '00'+row.callsign
+      }else if (row.callsign.length === 3) {
+        return '0'+row.callsign
+      }else {
+        return row.callsign
+      }
+
+    },
     clearFilter() {
-      this.$refs.programmeOverviewTable.clearFilter()
+      this.$refs.crewOverviewTable.clearFilter()
     },
     filterStatus(value, row) {
       return row.status === value
