@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CrewStatisticsDao">
+    <resultMap type="CrewStatistics" id="crewStatisticsResultMap" >
+        <result property="callsign" column="Pilot"/>
+        <result property="reportID" column="ReportID"/>
+        <result property="flightNumber" column="FlightNumber"/>
+        <result property="departure" column="Departure"/>
+        <result property="arrival" column="Arrive"/>
+        <result property="registerNumber" column="RegisterNumber"/>
+        <result property="flightTime" column="FlightTime" jdbcType="TIME"/>
+        <result property="flightScore" column="FlightScore"/>
+        <result property="FOQA" column="FOQA"/>
+        <result property="operationScore" column="OperationScore"/>
+        <result property="submitTime" column="SubmitTime"/>
+        <result property="status" column="Status"/>
+        <result property="landingRate" column="LandingRate"/>
+        <result property="overload" column="Overload"/>
+        <result property="punctualityRate" column="PunctualityRate"/>
+        <result property="fuel" column="Fuel"/>
+        <result property="fuelPrice" column="FuelPrice"/>
+        <result property="fuelConsume" column="FuelConsume"/>
+        <result property="stowage" column="Stowage"/>
+        <result property="distance" column="Distance"/>
+        <result property="price" column="Price"/>
+        <result property="profit" column="Profit"/>
+    </resultMap>
+    <insert id="addCrew" parameterType="Crew">
+        INSERT INTO crew(paper_id,name,number,detail) VALUE (#{paperId},#{paperName}, #{paperNum}, #{paperDetail})
+    </insert>
+
+    <delete id="deleteCrewById" parameterType="String">
+        DELETE FROM paper WHERE paper_id=#{paperID}
+    </delete>
+
+    <update id="updateCrew" parameterType="Crew">
+        UPDATE paper
+        SET NAME = #{paperName},NUMBER = #{paperNum},detail = #{paperDetail}
+        WHERE  paper_id = #{paperId}
+    </update>
+
+    <select id="queryByCallsign" resultType="CrewStatistics" parameterType="int">
+        SELECT Pilot, ReportID, FlightNumber, Departure, Arrive, Aircraft, RegisterNumber, FlightTime, FlightScore, FOQA, OperationScore, SubmitTime, Status, LandingRate, Overload, PunctualityRate, Fuel, FuelPrice, FuelConsume, Stowage, Distance, Price, Profit
+        FROM Report
+        WHERE Pilot=#{callsign}
+    </select>
+
+    <select id="queryAllCrew" resultMap="crewStatisticsResultMap">
+        SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator
+        FROM Crew
+    </select>
+
+</mapper>

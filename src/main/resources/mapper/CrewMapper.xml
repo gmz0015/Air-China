@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CrewDao">
+    <resultMap type="Crew" id="crewResultMap" >
+        <result property="callsign" column="CallSign"/>
+        <result property="rating" column="Rating"/>
+        <result property="grouded" column="Grouded"/>
+        <result property="normal" column="Normal"/>
+        <result property="dispatch" column="Dispatch"/>
+        <result property="administrator" column="Administrator"/>
+        <result property="status" column="Status"/>
+    </resultMap>
+    <insert id="addCrew" parameterType="Crew">
+        INSERT INTO crew(paper_id,name,number,detail) VALUE (#{paperId},#{paperName}, #{paperNum}, #{paperDetail})
+    </insert>
+
+    <delete id="deleteCrewById" parameterType="String">
+        DELETE FROM paper WHERE paper_id=#{paperID}
+    </delete>
+
+    <update id="updateCrew" parameterType="Crew">
+        UPDATE paper
+        SET NAME = #{paperName},NUMBER = #{paperNum},detail = #{paperDetail}
+        WHERE  paper_id = #{paperId}
+    </update>
+
+    <select id="queryByCallsign" resultType="Crew" parameterType="String">
+        SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator
+        FROM Crew
+        WHERE callsign=#{callsign}
+    </select>
+    <select id="queryAllCrew" resultMap="crewResultMap">
+        SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator
+        FROM Crew
+    </select>
+
+</mapper>
