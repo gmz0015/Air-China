@@ -26,11 +26,18 @@
         WHERE  paper_id = #{paperId}
     </update>
 
-    <select id="queryByCallsign" resultType="Crew" parameterType="String">
-        SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator
+    <select id="authentication" resultType="Crew" parameterType="String">
+        SELECT CallSign, Administrator, Password
         FROM Crew
         WHERE callsign=#{callsign}
     </select>
+
+    <select id="queryByCallsign" resultType="Crew" parameterType="String">
+        SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator, password
+        FROM Crew
+        WHERE callsign=#{callsign}
+    </select>
+
     <select id="queryAllCrew" resultMap="crewResultMap">
         SELECT CallSign,Rating,Status, Grouded, Normal, Dispatch, Administrator
         FROM Crew

@@ -13,3 +13,6 @@ An Airline Management Website
 ## PATH
 - tomcat
     - `/usr/local/tomcat`
+    
+# Dependencies
+- JWT

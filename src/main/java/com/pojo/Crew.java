@@ -8,6 +8,15 @@ public class Crew {
     private int dispatch;
     private int administrator;
     private String status;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getCallsign() {
         return callsign;

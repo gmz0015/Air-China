@@ -14,4 +14,6 @@ public interface CrewService {
     Crew queryByCallsign(int callsign);
 
     List<Crew> queryAllCrew();
+
+    Crew authentication(String callsign);
 }

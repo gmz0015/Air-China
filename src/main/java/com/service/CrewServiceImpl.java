@@ -37,5 +37,10 @@ public class CrewServiceImpl implements CrewService{
         return crewDao.queryAllCrew();
     }
 
+    @Override
+    public Crew authentication(String callsign) {
+        return crewDao.authentication(callsign);
+    }
+
 }
 
