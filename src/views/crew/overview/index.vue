@@ -26,7 +26,7 @@
 
       <!-- Status -->
       <el-table-column
-        :filters="[{ text: '通过', value: 'pass' }, { text: '待审核', value: 'pending' }, { text: '停飞', value: 'grouded' }]"
+        :filters="[{ text: '通过', value: '1' }, { text: '待审核', value: '0' }]"
         :filter-method="filterStatus"
         filter-placement="bottom-end"
         class-name="status-col"
@@ -36,7 +36,7 @@
         align="center"
         sortable>
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter" >{{ scope.row.status }}</el-tag>
+          <el-tag :formatter="formatStatus" :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
         </template>
       </el-table-column>
 
@@ -68,9 +68,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        pass: 'success',
+        1: 'success',
         panding: 'gray',
-        grouded: 'danger'
+        0: 'danger'
       }
       return statusMap[status]
     }
@@ -96,8 +96,6 @@ export default {
       })
     },
     formatCallsign: function(row, column) {
-      console.log(column)
-      console.log(row.callsign)
       if (row.callsign.length === 1) {
         return '000' + row.callsign
       } else if (row.callsign === 2) {
@@ -106,6 +104,13 @@ export default {
         return '0' + row.callsign
       } else {
         return row.callsign
+      }
+    },
+    formatStatus: function(row, column) {
+      if (row.status === 0) {
+        return '待审核'
+      } else if (row.status === 1) {
+        return '通过'
       }
     },
     clearFilter() {

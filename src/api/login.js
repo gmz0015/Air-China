@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+export function login(callsign, password) {
   return request({
-    url: '/user/login',
-    method: 'post',
-    data: {
-      username,
+    url: '/api/crew/authentication',
+    method: 'get',
+    params: {
+      callsign,
       password
     }
   })
@@ -13,7 +13,7 @@ export function login(username, password) {
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/api/crew/authorisation',
     method: 'get',
     params: { token }
   })
