@@ -16,7 +16,7 @@ module.exports = {
       // pathRewrite: {
       //   '^/api': 'http://localhost:8080' //路径重写
       //   }
-      }
+      // }
     },
 
     // Various Dev Server settings

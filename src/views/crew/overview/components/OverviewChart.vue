@@ -20,11 +20,27 @@ export default {
     height: {
       type: String,
       default: '300px'
+    },
+    autoResize: {
+      type: Boolean,
+      default: true
+    },
+    chartData: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
       chart: null
+    }
+  },
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
     }
   },
   mounted() {
@@ -47,56 +63,58 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
+      this.setOptions(this.chartData)
+    },
+    setOptions({ validFlight, invalidFlight } = {}) {
       this.chart.setOption({
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
+        tooltip: {
+          trigger: 'axis',
+          // 坐标轴指示器，坐标轴触发有效
+          axisPointer: {
+            // 默认为直线，可选为：'line' | 'shadow'
+            type: 'shadow'
+          }
         },
         legend: {
-            data: ['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+          data: ['通过航班', '未通过航班']
         },
         grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
         },
-        xAxis:  {
-            type: 'value'
+        xAxis: {
+          type: 'value'
         },
         yAxis: {
-            type: 'category',
-            data: ['周一','周二','周三','周四','周五','周六','周日']
+          type: 'category',
+          data: ['航班量']
         },
-        series: [
-            {
-                name: '直接访问',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [320, 302, 301, 334, 390, 330, 320]
-            },
-            {
-                name: '邮件营销',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [120, 132, 101, 134, 90, 230, 210]
+        series: [{
+          name: '通过航班',
+          type: 'bar',
+          stack: '总量',
+          data: validFlight,
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
             }
-        ]
+          }
+        },
+        {
+          name: '未通过航班',
+          type: 'bar',
+          stack: '总量',
+          data: invalidFlight,
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          }
+        }]
       })
     }
   }

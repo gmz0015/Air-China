@@ -10,7 +10,7 @@
       :default-sort = "{prop: 'c', order: 'ascending'}">
 
       <!-- Callsign -->
-      <el-table-column align="center" label="呼号" prop="callsign" width="150" :formatter="formatCallsign" sortable/>
+      <el-table-column :formatter="formatCallsign" align="center" label="呼号" prop="callsign" width="150" sortable/>
 
       <!-- Rating -->
       <el-table-column align="center" label="等级" prop="rating" width="150" sortable/>
@@ -52,7 +52,7 @@
           </el-button> -->
 
           <!-- Edit -->
-          <router-link :to="'/crew/detail/'+scope.row.id">
+          <router-link :to="'/crew/detail/'+scope.row.callsign">
             <el-button type="primary" size="small" icon="el-icon-edit">Detail</el-button>
           </router-link>
         </template>
@@ -95,19 +95,18 @@ export default {
         this.listLoading = false
       })
     },
-    formatCallsign: function (row, column) {
+    formatCallsign: function(row, column) {
       console.log(column)
       console.log(row.callsign)
       if (row.callsign.length === 1) {
         return '000' + row.callsign
-      }else if (row.callsign === 2) {
-        return '00'+row.callsign
-      }else if (row.callsign.length === 3) {
-        return '0'+row.callsign
-      }else {
+      } else if (row.callsign === 2) {
+        return '00' + row.callsign
+      } else if (row.callsign.length === 3) {
+        return '0' + row.callsign
+      } else {
         return row.callsign
       }
-
     },
     clearFilter() {
       this.$refs.crewOverviewTable.clearFilter()

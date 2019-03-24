@@ -3,18 +3,24 @@
     <div class="detail">
 
       <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-        Weicome
+        <h1>{{ callsign }}</h1>
+      </el-row>
+
+      <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+        <div class="chart-wrapper">
+          <calendar-chart/>
+        </div>
       </el-row>
 
       <el-row :gutter="32">
         <el-col :xs="24" :sm="24" :lg="8">
           <div class="chart-wrapper">
-            <overview-chart/>
+            <overview-chart :chart-data="lineChartData"/>
           </div>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
           <div class="chart-wrapper">
-            <overview-chart/>
+            <overview-chart :chart-data="this.setBarChart()"/>
           </div>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
@@ -30,6 +36,13 @@
 
 <script>
 import OverviewChart from './components/OverviewChart'
+import CalendarChart from './components/CalendarChart'
+import { fetchCrew } from '@/api/crew'
+
+const lineChartData = {
+  validFlight: [22],
+  invalidFlight: [212]
+}
 
 export default {
   name: 'Detail',
@@ -44,40 +57,42 @@ export default {
     }
   },
   components: {
-    OverviewChart
+    OverviewChart,
+    CalendarChart
   },
   data() {
     return {
+      flight: {},
+      flag: false,
+      lineChartData: lineChartData,
       list: null,
-      listModule: null,
-      listCoreModule: null,
-      listLoading: false,
-      multipleSelection: []
+      calsign: null,
+      listLoading: false
     }
   },
   created() {
-    // const id = this.$route.params && this.$route.params.id
-    // this.getData(id)
+    this.callsign = this.$route.params && this.$route.params.id
+    console.log('callsign: ' + this.callsign)
+    this.getData(this.callsign)
   },
   methods: {
-    getData(id) {
+    getData(callsign) {
       this.listLoading = true
-      fetchProgramme(id).then(response => {
-        this.list = response.items
-      }).catch(err => {
-        console.log(err)
-      })
-      fetchProgrammeCoreModule(id).then(response => {
-        this.listCoreModule = response.items
-      }).catch(err => {
-        console.log(err)
-      })
-      fetchProgrammeModule(id).then(response => {
-        this.listModule = response.items
+      fetchCrew(callsign).then(response => {
+        this.list = response
+        console.log('response', response)
       }).catch(err => {
         console.log(err)
       })
       this.listLoading = false
+    },
+    setBarChart() {
+      this.flight = {
+        validFlight: [this.list.validFlight],
+        invalidFlight: [this.list.invalidFlight]
+      }
+      this.flag = true
+      return this.flight
     },
     cancelSelection(rows) {
       this.$refs.core_module.clearSelection()

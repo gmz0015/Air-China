@@ -8,9 +8,9 @@ export function fetchList(query) {
   })
 }
 
-export function fetchcrew(callsign) {
+export function fetchCrew(callsign) {
   return request({
-    url: '/api/crew/detail',
+    url: '/api/crew/statistics/query',
     method: 'get',
     params: { callsign }
   })
