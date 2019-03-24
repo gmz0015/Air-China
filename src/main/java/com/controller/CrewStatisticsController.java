@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public class CrewStatisticsController {
     @Autowired
     private CrewStatisticsService crewStatisticsService;
 
-    @RequestMapping("/query/{crewCallsign}")
+    @RequestMapping("/query")
     @ResponseBody // return json
-    public JSONObject queryCrewStatistics(@PathVariable("crewCallsign") int callsign) {
+    public JSONObject queryCrewStatistics(@RequestParam(value = "callsign", required = true)  int callsign) {
         List<CrewStatistics> crewStatisticsList = crewStatisticsService.queryByCallsign(callsign);
         CalculateCrewStatistics processData = new CalculateCrewStatistics();
         processData.setData(crewStatisticsList, callsign);
