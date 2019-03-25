@@ -26,6 +26,7 @@
 
       <!-- Status -->
       <el-table-column
+        :formatter="formatStatus"
         :filters="[{ text: '通过', value: '1' }, { text: '待审核', value: '0' }]"
         :filter-method="filterStatus"
         filter-placement="bottom-end"
@@ -35,9 +36,10 @@
         width="110"
         align="center"
         sortable>
-        <template slot-scope="scope">
-          <el-tag :formatter="formatStatus" :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
+        <!-- <el-tag  prop="status"/> -->
+        <!-- <template slot-scope="scope">
+          <el-tag :type="scope.row.status | statusFilter" >{{ scope.row.status }}</el-tag>
+        </template> -->
       </el-table-column>
 
       <!-- Botton -->
@@ -69,7 +71,7 @@ export default {
     statusFilter(status) {
       const statusMap = {
         1: 'success',
-        panding: 'gray',
+        '通过': 'gray',
         0: 'danger'
       }
       return statusMap[status]
@@ -107,9 +109,9 @@ export default {
       }
     },
     formatStatus: function(row, column) {
-      if (row.status === 0) {
+      if (row.status === '0') {
         return '待审核'
-      } else if (row.status === 1) {
+      } else if (row.status === '1') {
         return '通过'
       }
     },

@@ -1,7 +1,8 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-admin-template</h3>
+      <svg-icon icon-class="AirChina_normal" class="user-icon" />
+      <!-- <h3 class="title">ChinaFlier - Air China</h3> -->
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -64,8 +65,8 @@ export default {
       loginRules: {
         // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         // password: [{ required: true, trigger: 'blur', validator: validatePass }]
-        username: [{ required: true, trigger: 'blur'}],
-        password: [{ required: true, trigger: 'blur'}]
+        username: [{ required: true, trigger: 'blur' }],
+        password: [{ required: true, trigger: 'blur' }]
       },
       loading: false,
       pwdType: 'password',
@@ -160,6 +161,11 @@ $light_gray:#eee;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
+  }
+  .user-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
   }
   .tips {
     font-size: 14px;
